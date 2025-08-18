@@ -1,4 +1,4 @@
-# apicache
+# EnvAndFoundationWorkshop (apicache app)
 
 A tiny Typer-based CLI that fetches data from an API and caches results in SQLite using SQLModel.
 
