@@ -12,11 +12,12 @@ repository = "https://example.com/your/repo"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-typer = {version = "^0.12.3", extras=["all"]}
+typer = ">=0.7.0"
 httpx = "^0.27.2"
 sqlmodel = "^0.0.21"
 sqlite-utils = "^3.36"
 rich = "^13.7"
+click = ">=8.1.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3"

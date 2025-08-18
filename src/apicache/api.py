@@ -27,6 +27,10 @@ class APIClient:
             payload: dict[str, Any] = cast(dict[str, Any], resp.json())
             return payload
 
+    def export_to_json(self, data: dict[str, Any], filename: str) -> None:
+        with open(filename, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+
     @staticmethod
     def to_json_str(data: dict[str, Any]) -> str:
         return json.dumps(data, ensure_ascii=False, sort_keys=True)
