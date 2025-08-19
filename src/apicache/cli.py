@@ -26,11 +26,17 @@ def fetch(
     resource: str = typer.Option(..., "--resource", "-r", help="API resource, e.g. posts"),
     id: int | None = typer.Option(None, "--id", "-i", help="Resource id"),
     base_url: str | None = typer.Option(None, "--base-url", "-b", help="Base URL of the API"),
-    no_cache: bool = typer.Option(
-        False, "--no-cache", help="Bypass cache and force a fresh request"
+    no_cache: bool = typer.Option( False, "--no-cache", help="Bypass cache and force a fresh request"),
+    output_file: Path | None = typer.Option(
+        None, "--output-file", "-f",
+        help="Write to this exact JSON file (overrides --output-dir -d)"
     ),
-    output: Path = typer.Option(Path("output.json"), "--output", "-o", writable=True, dir_okay=False, file_okay=True, help="Output file for the fetched data"),
-    open_after: bool = typer.Option(False, "--open", help="Open the output file after fetching"),
+    output_dir: Path = typer.Option(
+        Path("data"), "--output-dir", "-d",
+        help="Directory for auto-named file when --output-file is not given",
+        file_okay=False, dir_okay=True, writable=True
+    ),
+    open_after: bool = typer.Option(False, "--open", "-o", help="Open the output file after fetching"),
 ) -> None:
     """Fetch a resource from the API, using cache when possible."""
     client = APIClient(base_url=base_url)
@@ -50,10 +56,21 @@ def fetch(
     set_item(key, json_str)
     print("[yellow]Fetched fresh[/yellow]")
     print(json_str)
-    if output:
-            client.export_to_json(data, output)
-            if open_after:
-                os.startfile(output)  # Windows
+    
+    # Decide where to write the file
+    if output_file is None:
+        # Auto filename like: posts_1.json or posts_all.json
+        auto_name = f"{resource}_{id}.json" if id is not None else f"{resource}.json"
+        target_path = output_dir / auto_name
+    else:
+        target_path = output_file 
+
+    # Write and optionally open
+    client.export_to_json(data, target_path)
+    if open_after:
+        logger.debug("Opening: %s", target_path)
+        os.startfile(target_path)  # Windows
+
 
 if __name__ == "__main__":
     app()
