@@ -1,10 +1,17 @@
 from __future__ import annotations
 
 import typer
-from rich import print
+import os
+import logging
+from pathlib import Path
 
+from rich import print
 from .api import APIClient
 from .cache import get_item, init_db, set_item
+
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 app = typer.Typer(help="CLI that fetches from an API and caches results in SQLite")
 
@@ -22,11 +29,14 @@ def fetch(
     no_cache: bool = typer.Option(
         False, "--no-cache", help="Bypass cache and force a fresh request"
     ),
+    output: Path = typer.Option(Path("output.json"), "--output", "-o", writable=True, dir_okay=False, file_okay=True, help="Output file for the fetched data"),
+    open_after: bool = typer.Option(False, "--open", help="Open the output file after fetching"),
 ) -> None:
     """Fetch a resource from the API, using cache when possible."""
     client = APIClient(base_url=base_url)
     key_parts = [client.base_url, resource, str(id) if id is not None else ""]
     key = ":".join([p for p in key_parts if p])
+    logger.debug("Cache key: %s", key)
 
     if not no_cache:
         cached = get_item(key)
@@ -40,7 +50,10 @@ def fetch(
     set_item(key, json_str)
     print("[yellow]Fetched fresh[/yellow]")
     print(json_str)
-
+    if output:
+            client.export_to_json(data, output)
+            if open_after:
+                os.startfile(output)  # Windows
 
 if __name__ == "__main__":
     app()

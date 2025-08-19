@@ -6,6 +6,11 @@ from pathlib import Path
 from sqlalchemy.engine import Engine
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
 DATA_DIR = Path("data")
 DB_PATH = DATA_DIR / "cache.db"
 
@@ -32,13 +37,17 @@ def set_item(key: str, value: str) -> None:
         item = CachedItem(key=key, value=value)
         session.merge(item)
         session.commit()
+    logger.debug("Cache set: key=%s size=%d", key, len(value))
 
 
 def get_item(key: str) -> str | None:
     engine = get_engine()
     with Session(engine) as session:
         stmt = select(CachedItem).where(CachedItem.key == key)
-    result = session.exec(stmt).first()
-    if result is None:
-        return None
-    return result.value
+        logger.debug("statement: %s", stmt)
+        result = session.exec(stmt).first()
+        if result is None:
+            logger.debug("Cache miss: key=%s", key)
+            return None
+        logger.debug("Cache hit: key=%s", key)
+        return result.value

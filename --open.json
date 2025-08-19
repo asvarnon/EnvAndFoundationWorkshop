@@ -1,0 +1,308 @@
+{
+  "data": [
+    {
+      "attributes": {
+        "description": "The Affenpinscher is a small and playful breed of dog that was originally bred in Germany for hunting small game. They are intelligent, energetic, and affectionate, and make excellent companion dogs.",
+        "female_weight": {
+          "max": 5,
+          "min": 3
+        },
+        "hypoallergenic": true,
+        "life": {
+          "max": 16,
+          "min": 14
+        },
+        "male_weight": {
+          "max": 5,
+          "min": 3
+        },
+        "name": "Affenpinscher"
+      },
+      "id": "036feed0-da8a-42c9-ab9a-57449b530b13",
+      "relationships": {
+        "group": {
+          "data": {
+            "id": "f56dc4b1-ba1a-4454-8ce2-bd5d41404a0c",
+            "type": "group"
+          }
+        }
+      },
+      "type": "breed"
+    },
+    {
+      "attributes": {
+        "description": "The Afghan Hound is a large and elegant breed of dog that was originally bred in Afghanistan for hunting small game. They are intelligent, independent, and athletic, and make excellent companion dogs.",
+        "female_weight": {
+          "max": 25,
+          "min": 20
+        },
+        "hypoallergenic": false,
+        "life": {
+          "max": 14,
+          "min": 12
+        },
+        "male_weight": {
+          "max": 27,
+          "min": 23
+        },
+        "name": "Afghan Hound"
+      },
+      "id": "dd9362cc-52e0-462d-b856-fccdcf24b140",
+      "relationships": {
+        "group": {
+          "data": {
+            "id": "be0147df-7755-4228-b132-2518c0c6d10d",
+            "type": "group"
+          }
+        }
+      },
+      "type": "breed"
+    },
+    {
+      "attributes": {
+        "description": "The Airedale Terrier is a large and powerful breed of dog that was originally bred in England for hunting small game. They are intelligent, energetic, and determined, and make excellent hunting dogs.",
+        "female_weight": {
+          "max": 20,
+          "min": 18
+        },
+        "hypoallergenic": false,
+        "life": {
+          "max": 14,
+          "min": 12
+        },
+        "male_weight": {
+          "max": 23,
+          "min": 20
+        },
+        "name": "Airedale Terrier"
+      },
+      "id": "1460844f-841c-4de8-b788-271aa4d63224",
+      "relationships": {
+        "group": {
+          "data": {
+            "id": "1bbf373b-1937-4e73-9863-45385daa4979",
+            "type": "group"
+          }
+        }
+      },
+      "type": "breed"
+    },
+    {
+      "attributes": {
+        "description": "The Akita is a large, muscular dog breed that originated in Japan. They are known for their loyalty and courage.",
+        "female_weight": {
+          "max": 50,
+          "min": 35
+        },
+        "hypoallergenic": false,
+        "life": {
+          "max": 12,
+          "min": 10
+        },
+        "male_weight": {
+          "max": 60,
+          "min": 35
+        },
+        "name": "Akita"
+      },
+      "id": "e7e99424-d514-4b56-9f0c-05736f6dd22d",
+      "relationships": {
+        "group": {
+          "data": {
+            "id": "56081cf0-fdf2-4114-9bf7-23a3f5b6af91",
+            "type": "group"
+          }
+        }
+      },
+      "type": "breed"
+    },
+    {
+      "attributes": {
+        "description": "The Alaskan Klee Kai is a small to medium-sized breed of dog that was developed in Alaska in the 1970s. It is an active and intelligent breed that is loyal and friendly. The Alaskan Klee Kai stands between 13-17 inches at the shoulder and has a double-coat that can come in various colors and patterns.",
+        "female_weight": {
+          "max": 7,
+          "min": 6
+        },
+        "hypoallergenic": false,
+        "life": {
+          "max": 15,
+          "min": 12
+        },
+        "male_weight": {
+          "max": 7,
+          "min": 6
+        },
+        "name": "Alaskan Klee Kai"
+      },
+      "id": "667c7359-a739-4f2b-abb4-98867671e375",
+      "relationships": {
+        "group": {
+          "data": {
+            "id": "8000793f-a1ae-4ec4-8d55-ef83f1f644e5",
+            "type": "group"
+          }
+        }
+      },
+      "type": "breed"
+    },
+    {
+      "attributes": {
+        "description": "The Alaskan Malamute is a large and powerful sled dog from Alaska. They are strong and hardworking, yet friendly and loyal. Alaskan Malamutes have a thick, double coat that can be any color. They are active and require plenty of exercise and mental stimulation to stay healthy and happy.",
+        "female_weight": {
+          "max": 34,
+          "min": 25
+        },
+        "hypoallergenic": false,
+        "life": {
+          "max": 15,
+          "min": 12
+        },
+        "male_weight": {
+          "max": 39,
+          "min": 34
+        },
+        "name": "Alaskan Malamute"
+      },
+      "id": "5328d59b-b4e4-48e9-98ec-0545c66c4385",
+      "relationships": {
+        "group": {
+          "data": {
+            "id": "56081cf0-fdf2-4114-9bf7-23a3f5b6af91",
+            "type": "group"
+          }
+        }
+      },
+      "type": "breed"
+    },
+    {
+      "attributes": {
+        "description": "The American Bulldog is a large and powerful breed of dog that was originally bred in the United States for working on farms. They are intelligent, loyal, and protective, and make excellent guard dogs.",
+        "female_weight": {
+          "max": 45,
+          "min": 25
+        },
+        "hypoallergenic": false,
+        "life": {
+          "max": 14,
+          "min": 12
+        },
+        "male_weight": {
+          "max": 50,
+          "min": 25
+        },
+        "name": "American Bulldog"
+      },
+      "id": "f72528b5-a5d7-4a17-b709-aba2db722307",
+      "relationships": {
+        "group": {
+          "data": {
+            "id": "8000793f-a1ae-4ec4-8d55-ef83f1f644e5",
+            "type": "group"
+          }
+        }
+      },
+      "type": "breed"
+    },
+    {
+      "attributes": {
+        "description": "The American English Coonhound is a large and athletic breed of dog that was originally bred in the United States for hunting raccoons. They are intelligent, energetic, and determined, and make excellent hunting dogs.",
+        "female_weight": {
+          "max": 30,
+          "min": 20
+        },
+        "hypoallergenic": false,
+        "life": {
+          "max": 14,
+          "min": 12
+        },
+        "male_weight": {
+          "max": 30,
+          "min": 20
+        },
+        "name": "American English Coonhound"
+      },
+      "id": "4524645f-dda7-4031-9272-dee29f5f91ea",
+      "relationships": {
+        "group": {
+          "data": {
+            "id": "be0147df-7755-4228-b132-2518c0c6d10d",
+            "type": "group"
+          }
+        }
+      },
+      "type": "breed"
+    },
+    {
+      "attributes": {
+        "description": "The American Eskimo Dog is a small to medium-sized breed with a thick, fluffy coat that comes in white, cream, or biscuit colors. It is known for its intelligence and its ability to learn a wide variety of tricks.",
+        "female_weight": {
+          "max": 20,
+          "min": 9
+        },
+        "hypoallergenic": false,
+        "life": {
+          "max": 15,
+          "min": 12
+        },
+        "male_weight": {
+          "max": 20,
+          "min": 9
+        },
+        "name": "American Eskimo Dog"
+      },
+      "id": "e1c0664d-aa61-4c85-970d-6c86ba197bee",
+      "relationships": {
+        "group": {
+          "data": {
+            "id": "7f6ea988-366a-4e20-b4ba-4d04274fea61",
+            "type": "group"
+          }
+        }
+      },
+      "type": "breed"
+    },
+    {
+      "attributes": {
+        "description": "The American Foxhound is a large and athletic breed of dog that was originally bred in the United States for hunting foxes. They are intelligent, energetic, and determined, and make excellent hunting dogs.",
+        "female_weight": {
+          "max": 34,
+          "min": 20
+        },
+        "hypoallergenic": false,
+        "life": {
+          "max": 15,
+          "min": 12
+        },
+        "male_weight": {
+          "max": 34,
+          "min": 20
+        },
+        "name": "American Foxhound"
+      },
+      "id": "8355b9c9-3724-477d-858a-c1c1c0f1743f",
+      "relationships": {
+        "group": {
+          "data": {
+            "id": "be0147df-7755-4228-b132-2518c0c6d10d",
+            "type": "group"
+          }
+        }
+      },
+      "type": "breed"
+    }
+  ],
+  "links": {
+    "current": "https://dogapi.dog/api/v2/breeds?page[number]=1",
+    "last": "https://dogapi.dog/api/v2/breeds?page[number]=29",
+    "next": "https://dogapi.dog/api/v2/breeds?page[number]=2",
+    "self": "https://dogapi.dog/api/v2/breeds"
+  },
+  "meta": {
+    "pagination": {
+      "current": 1,
+      "last": 29,
+      "next": 2,
+      "records": 283
+    }
+  }
+}

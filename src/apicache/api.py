@@ -1,9 +1,15 @@
 from __future__ import annotations
 
+from pathlib import Path
 import json
+import os
 from typing import Any, cast
-
+from .utils.json_utils import save_and_open_json
 import httpx
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 DEFAULT_BASE_URL = "https://jsonplaceholder.typicode.com"
 
@@ -17,6 +23,7 @@ class APIClient:
         url = f"{self.base_url.rstrip('/')}/{resource.strip('/')}"
         if id is not None:
             url += f"/{id}"
+        logger.debug("Built URL: %s", url)
         return url
 
     def fetch(self, resource: str, id: int | None = None) -> dict[str, Any]:
@@ -25,11 +32,12 @@ class APIClient:
             resp = client.get(url)
             resp.raise_for_status()
             payload: dict[str, Any] = cast(dict[str, Any], resp.json())
+            # logger.debug("Fetched data: %s", payload)
+            logger.debug("Fetched data IS RETURNED")
             return payload
 
-    def export_to_json(self, data: dict[str, Any], filename: str) -> None:
-        with open(filename, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+    def export_to_json(self, data: dict[str, Any], filename: str | Path) -> Path:
+        return save_and_open_json(data, filename)
 
     @staticmethod
     def to_json_str(data: dict[str, Any]) -> str:
