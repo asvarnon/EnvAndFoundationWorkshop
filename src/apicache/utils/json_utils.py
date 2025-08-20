@@ -5,7 +5,7 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-def save_and_open_json(data: dict[str, Any], path: str | Path) -> Path:
+def save_json(data: dict[str, Any], path: str | Path) -> Path:
     path = Path(path).with_suffix(".json")
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
@@ -19,6 +19,3 @@ def save_and_open_json(data: dict[str, Any], path: str | Path) -> Path:
         subprocess.run(["xdg-open", str(path)], check=False)
     return path
 
-# Example:
-# payload = {"hello": "world", "numbers": [1, 2, 3]}
-# save_and_open_json(payload, "data/result")

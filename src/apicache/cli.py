@@ -10,7 +10,7 @@ from .api import APIClient
 from .cache import get_item, init_db, set_item
 
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 app = typer.Typer(help="CLI that fetches from an API and caches results in SQLite")
@@ -23,10 +23,16 @@ def init_callback() -> None:
 
 @app.command()
 def fetch(
-    resource: str = typer.Option(..., "--resource", "-r", help="API resource, e.g. posts"),
+    resource: str = typer.Option(..., "--resource", "-r", help="API resource, e.g. posts, endpoint name"),
     id: int | None = typer.Option(None, "--id", "-i", help="Resource id"),
     base_url: str | None = typer.Option(None, "--base-url", "-b", help="Base URL of the API"),
     no_cache: bool = typer.Option( False, "--no-cache", help="Bypass cache and force a fresh request"),
+    # API key handling: prefer env var, allow override flag for ad-hoc/CI
+    api_key: str | None = typer.Option(
+        None, "--api-key", "-k",
+        help="API key (use env APICACHE_API_KEY instead of CLI when possible)",
+        envvar="APICACHE_API_KEY", show_default=False,
+    ),
     output_file: Path | None = typer.Option(
         None, "--output-file", "-f",
         help="Write to this exact JSON file (overrides --output-dir -d)"
@@ -39,7 +45,7 @@ def fetch(
     open_after: bool = typer.Option(False, "--open", "-o", help="Open the output file after fetching"),
 ) -> None:
     """Fetch a resource from the API, using cache when possible."""
-    client = APIClient(base_url=base_url)
+    client = APIClient(base_url=base_url, api_key=api_key)
     key_parts = [client.base_url, resource, str(id) if id is not None else ""]
     key = ":".join([p for p in key_parts if p])
     logger.debug("Cache key: %s", key)
