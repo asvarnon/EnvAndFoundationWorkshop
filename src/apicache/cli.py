@@ -57,6 +57,7 @@ def fetch(
             print(cached)
             raise typer.Exit(code=0)
 
+
     data = client.fetch(resource, id)
     json_str = client.to_json_str(data)
     set_item(key, json_str)
