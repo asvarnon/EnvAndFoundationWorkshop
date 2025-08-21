@@ -1,40 +1,51 @@
 # syntax=docker/dockerfile:1
 FROM python:3.11-slim
 
-ENV POETRY_VERSION=1.8.3 \
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    POETRY_VERSION=1.8.3 \
     POETRY_HOME="/opt/poetry" \
     POETRY_NO_INTERACTION=1 \
     PIP_NO_CACHE_DIR=1
 
-# Ensure Poetry is on PATH
 ENV PATH="$POETRY_HOME/bin:$PATH"
 
-# Install system deps
+# System deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 # Install Poetry
-RUN curl -sSL https://install.python-poetry.org | python3 - && \
-    ln -s /root/.local/bin/poetry /usr/local/bin/poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
 
 WORKDIR /app
 
-# Copy only pyproject to leverage Docker layer caching
-COPY pyproject.toml README.md ./
+# Leverage layer caching
+COPY pyproject.toml poetry.lock* README.md ./
 
-# Configure virtualenvs to be in-project
+# In-project venv
 ENV POETRY_VIRTUALENVS_IN_PROJECT=true
 
-# Install dependencies (no code yet for better caching)
+# Install deps (no code yet)
 RUN poetry install --no-root --no-ansi
 
-# Now copy the rest
+# Copy source (tests not needed in runtime image)
 COPY src ./src
-COPY tests ./tests
 
-# Install the package itself
+# Install the package itself (adds console script 'apicache')
 RUN poetry install --no-ansi
 
+# Make venv binaries available; no poetry needed at runtime
+ENV PATH="/app/.venv/bin:${PATH}"
+
+# Non-root user and writable data dir
+RUN useradd -m app && mkdir -p /app/data && chown -R app:app /app
+USER app
+
+# Overridable defaults for cache/output
+ENV APICACHE_OUTPUT_DIR="/app/data" \
+    APICACHE_DB_PATH="/app/data/cache.db" \
+    API_BASE_URL=""
+
 # Default command
-CMD ["poetry", "run", "apicache", "--help"]
+CMD ["apicache", "--help"]
