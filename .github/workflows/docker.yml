@@ -22,7 +22,8 @@ env:
   # Push to both Docker Hub and GHCR
   IMAGE_NAMES: |
     docker.io/asvarnon/apicache
-    ghcr.io/asvarnon/apicache
+    docker.io/${{ github.repository_owner }}/apicache
+    ghcr.io/${{ github.repository_owner }}/apicache
 
 jobs:
   docker:
