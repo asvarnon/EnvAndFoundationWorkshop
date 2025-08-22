@@ -6,8 +6,18 @@ readme = "README.md"
 license = "MIT"
 authors = ["Your Name <you@example.com>"]
 packages = [{ include = "apicache", from = "src" }]
-# Include typing marker
 include = ["src/apicache/py.typed"]
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Utilities",
+]
 
 [tool.poetry.scripts]
 apicache = "apicache.cli:app"
@@ -64,10 +74,6 @@ testpaths = ["tests"]
 Homepage = "https://github.com/OWNER/REPO"
 Repository = "https://github.com/OWNER/REPO"
 Issues = "https://github.com/OWNER/REPO/issues"
-
-[tool.poetry.classifiers]
-# Trove classifiers (optional but nice on PyPI)
-# E.g.: "Programming Language :: Python :: 3", "License :: OSI Approved :: MIT License"
 
 [build-system]
 requires = ["poetry-core>=1.8.0"]
