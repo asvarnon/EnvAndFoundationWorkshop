@@ -4,7 +4,7 @@ version = "0.1.4"
 description = "Tiny Typer CLI that fetches an API and caches results in SQLite (SQLModel)"
 readme = "README.md"
 license = "MIT"
-authors = ["Your Name <you@example.com>"]
+authors = ["Austin Varnon <austinvarnon@gmail.com>"]
 packages = [{ include = "apicache_cli_av", from = "src" }]
 include = ["src/apicache_cli_av/py.typed"]
 
@@ -57,9 +57,9 @@ addopts = "-ra -q --cov=apicache_cli_av --cov-report=term-missing"
 testpaths = ["tests"]
 
 [tool.poetry.urls]
-Homepage = "https://github.com/OWNER/REPO"
-Repository = "https://github.com/OWNER/REPO"
-Issues = "https://github.com/OWNER/REPO/issues"
+Homepage = "https://github.com/asvarnon/EnvAndFoundationWorkshop"
+Repository = "https://github.com/asvarnon/EnvAndFoundationWorkshop"
+Issues = "https://github.com/asvarnon/EnvAndFoundationWorkshop/issues"
 
 [build-system]
 requires = ["poetry-core>=1.8.0"]
