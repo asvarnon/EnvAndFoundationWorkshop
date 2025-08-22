@@ -9,9 +9,9 @@ import respx
 from httpx import Response
 from typer.testing import CliRunner
 
-from apicache.api import APIClient
-from apicache.cache import get_item, init_db
-from apicache.cli import app
+from apicache_cli_av.api import APIClient
+from apicache_cli_av.cache import get_item, init_db
+from apicache_cli_av.cli import app
 
 
 @pytest.fixture(autouse=True)
@@ -19,8 +19,8 @@ def tmp_db(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Generator[None, N
     # Redirect DB to a temp path for tests
     data_dir = tmp_path / "data"
     data_dir.mkdir()
-    monkeypatch.setattr("apicache.cache.DATA_DIR", data_dir)
-    monkeypatch.setattr("apicache.cache.DB_PATH", data_dir / "cache.db")
+    monkeypatch.setattr("apicache_cli_av.cache.DATA_DIR", data_dir)
+    monkeypatch.setattr("apicache_cli_av.cache.DB_PATH", data_dir / "cache.db")
     init_db()
     yield
 

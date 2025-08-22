@@ -48,4 +48,5 @@ ENV APICACHE_OUTPUT_DIR="/app/data" \
     API_BASE_URL=""
 
 # Default command
-CMD ["apicache", "--help"]
+ENTRYPOINT ["/usr/bin/tini", "--"]
+CMD ["apicache-cli-av", "--help"]
