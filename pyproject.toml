@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "apicache-cli-av"
-version = "0.1.2"
+version = "0.1.4"
 description = "Tiny Typer CLI that fetches an API and caches results in SQLite (SQLModel)"
 readme = "README.md"
 license = "MIT"
@@ -64,3 +64,9 @@ Issues = "https://github.com/OWNER/REPO/issues"
 [build-system]
 requires = ["poetry-core>=1.8.0"]
 build-backend = "poetry.core.masonry.api"
+
+[build]
+script = [
+  "python -m build",
+  "python -m twine upload dist/apicache-cli-av-*",
+]
