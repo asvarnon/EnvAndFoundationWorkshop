@@ -52,17 +52,20 @@ jobs:
             type=ref,event=tag
             type=sha
 
-      # Login only on push (secrets are not exposed to PRs, including Dependabot)
+      # Skip login on PRs and on Dependabot pushes
       - name: Login to Docker Hub
-        if: github.event_name == 'push'
+        if: |
+          (github.event_name == 'push' && github.actor != 'dependabot[bot]' && !startsWith(github.ref, 'refs/heads/dependabot/')) ||
+          (github.event_name == 'workflow_dispatch' && inputs.push == 'true')
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # Optional GHCR login (also only on push)
       - name: Login to GHCR
-        if: github.event_name == 'push'
+        if: |
+          (github.event_name == 'push' && github.actor != 'dependabot[bot]' && !startsWith(github.ref, 'refs/heads/dependabot/')) ||
+          (github.event_name == 'workflow_dispatch' && inputs.push == 'true')
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
@@ -75,6 +78,6 @@ jobs:
           context: .
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
-          push: ${{ github.event_name == 'push' }}   # PRs build only
+          push: ${{ (github.event_name == 'push' && github.actor != 'dependabot[bot]' && !startsWith(github.ref, 'refs/heads/dependabot/')) || (github.event_name == 'workflow_dispatch' && inputs.push == 'true') }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
