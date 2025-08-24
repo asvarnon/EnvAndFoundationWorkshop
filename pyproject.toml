@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "apicache-cli-av"
-version = "0.1.4"
+version = "0.1.5"
 description = "Tiny Typer CLI that fetches an API and caches results in SQLite (SQLModel)"
 readme = "README.md"
 license = "MIT"

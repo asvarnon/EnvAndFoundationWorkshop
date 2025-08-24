@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"          # Works with Poetry via poetry.lock
+    directory: "/"
+    schedule: { interval: "weekly" }
+    ignore:
+      - dependency-name: "click"      # Keep Typer-compatible
+        versions: [">=8.2"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule: { interval: "weekly" }
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule: { interval: "weekly" }
