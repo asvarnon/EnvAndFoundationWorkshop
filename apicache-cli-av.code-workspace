@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.defaultInterpreterPath": ".venv-pypi-test\\Scripts\\python.exe"
+	}
+}
