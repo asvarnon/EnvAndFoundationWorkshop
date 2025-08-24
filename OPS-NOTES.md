@@ -20,6 +20,8 @@ Get-ChildItem -Filter *.egg-info | Remove-Item -Recurse -Force -ErrorAction Sile
 
 # Build
 poetry build
+# If Twine isn't installed yet:
+poetry run pip install -U twine
 poetry run twine check dist/*   # optional
 
 # Upload to PyPI
@@ -28,7 +30,7 @@ $env:TWINE_PASSWORD="pypi-<YOUR-PYPI-TOKEN>"
 poetry run twine upload dist/*
 ```
 
-Verify install
+Verify install (from PyPI)
 ```powershell
 python -m venv .venv-pypi-test
 .\.venv-pypi-test\Scripts\Activate.ps1
@@ -48,6 +50,7 @@ Common issues
 
 Build from current branch
 ```powershell
+# Replace 'youruser' with your Docker Hub username 
 docker build -t youruser/apicache:dev .
 ```
 
@@ -81,7 +84,7 @@ Note: --open won’t launch apps on the host from inside a container.
 
 - docker.yml: builds/pushes Docker images on pushes/tags.
   - Needs secrets: DOCKERHUB_USERNAME, DOCKERHUB_TOKEN.
-  - Tags: latest on main, branch name on other branches, plus sha; handles GHCR if configured.
+  - Tags: latest on main, branch name on other branches, plus sha; GHCR if configured.
 
 - publish.yml: builds artifacts; can publish to TestPyPI on main push and PyPI on tag v*.
   - Needs secrets: TEST_PYPI_API_TOKEN, PYPI_API_TOKEN.
@@ -114,9 +117,21 @@ poetry show --outdated
 poetry update <package>
 ```
 
-Security audit locally
+Security audit locally (Poetry-managed)
 ```powershell
+# Install export plugin once
+poetry self add poetry-plugin-export
+# Export current deps and audit
 poetry export -f requirements.txt --without-hashes -o req.txt
+poetry run pip install -U pip-audit
+poetry run pip-audit -r req.txt
+```
+
+Alternative audit (plain venv)
+```powershell
+python -m venv .venv-audit
+.\.venv-audit\Scripts\Activate.ps1
+pip install -U pip-audit
 pip-audit -r req.txt
 ```
 
