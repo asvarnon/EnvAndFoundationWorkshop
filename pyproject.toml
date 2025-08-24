@@ -38,7 +38,7 @@ ruff = "^0.5.7"
 black = "^24.8"
 mypy = "^1.11"
 types-requests = "^2.32"
-respx = "^0.21.1"
+respx = ">=0.21.1,<0.23.0"
 
 [tool.ruff]
 line-length = 100
